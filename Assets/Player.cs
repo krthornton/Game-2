@@ -7,15 +7,23 @@ using Gamekit2D;
 public class Player : MonoBehaviour
 {
     // init some attributes modifiable in editor
-    [SerializeField] int starting_lives;
-    [SerializeField] int current_lives;
-    [SerializeField] GameObject spawnpoint;
+    public bool debug_log;
+    public int starting_lives;
+    public int current_lives;
+    public GameObject spawnpoint;
+    public int gravity_flip_delay;
+
+    // init some private attributes
+    System.DateTime last_gravity_flip;
 
     // function called on start of game
     public void Start()
     {
         // init the player's current_lives to starting_lives
         current_lives = starting_lives;
+
+        // init the last_gravity_flip var
+        last_gravity_flip = System.DateTime.Now;
 
         // set the player's lives count
         UpdateLivesUI();
@@ -28,10 +36,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // if so, check that the player isn't spamming the gravity key
+            System.DateTime now = System.DateTime.Now;
+            System.TimeSpan diff = now - last_gravity_flip;
+            if (diff.TotalMilliseconds > gravity_flip_delay) {
+                // debug
+                if (debug_log) Debug.Log("[DEBUG] Gravity flip delay: " + diff.ToString());
 
+                // update the last_gravity_flip time
+                last_gravity_flip = now;
 
-            // if so, flip the gravity
-            GetComponent<Rigidbody2D>().gravityScale *= -1;
+                // flip gravity
+                GetComponent<Rigidbody2D>().gravityScale *= -1;
+            }
         }
     }
 
