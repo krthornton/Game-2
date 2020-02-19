@@ -21,6 +21,20 @@ public class Player : MonoBehaviour
         UpdateLivesUI();
     }
 
+    // function called every update
+    public void Update()
+    {
+        // check if the player has pressed the gravity key ("E")
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // if so, check that the player isn't spamming the gravity key
+
+
+            // if so, flip the gravity
+            GetComponent<Rigidbody2D>().gravityScale *= -1;
+        }
+    }
+
     // function called whenever the player enters a trigger field (like checkpoints)
     public void OnTriggerEnter2D(Collider2D other)
     {
