@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
 
                 // flip gravity
                 GetComponent<Rigidbody2D>().gravityScale *= -1;
+
+                // flip player's sprite
+                FlipSprite();
             }
         }
     }
@@ -62,9 +65,17 @@ public class Player : MonoBehaviour
             {
                 // if not, set new spawnpoint
                 spawnpoint = other.gameObject;
-                Debug.Log("checkpoint reached: " + spawnpoint.name);
+                if (debug_log) Debug.Log("[DEBUG] Checkpoint Reached: " + spawnpoint.name);
             }
         }
+    }
+
+    public void FlipSprite()
+    {
+        // get the current state of the sprite and flip the sprite
+        bool current_flip = GetComponent<SpriteRenderer>().flipY;
+        if (current_flip) GetComponent<SpriteRenderer>().flipY = false;
+        else GetComponent<SpriteRenderer>().flipY = true;
     }
 
     // function called when Damageable.OnDie
@@ -78,10 +89,10 @@ public class Player : MonoBehaviour
     public void Respawn()
     {
         // set player as inactive
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
         // teleport the player to most recent checkpoint
-        this.gameObject.transform.position = spawnpoint.transform.position;
+        gameObject.transform.position = spawnpoint.transform.position;
 
         // reset the player's damageable health
         Damageable damageable = this.GetComponent<Damageable>();
@@ -94,7 +105,7 @@ public class Player : MonoBehaviour
         UpdateLivesUI();
 
         // reenable player
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     // updates the UI on screen with current_lives value
