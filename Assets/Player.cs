@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         damageable.SetHealth(damageable.startingHealth);
 
         // subtract a life from the player
-        current_lives--;
+        current_lives++;
 
         // update the player's lives count
         UpdateLivesUI();
@@ -112,6 +112,6 @@ public class Player : MonoBehaviour
     public void UpdateLivesUI()
     {
         Text ui_lives = GameObject.Find("Main Camera/UI/Lives").GetComponent<Text>();
-        ui_lives.text = "Lives " + current_lives.ToString() + "/" + starting_lives.ToString();
+        ui_lives.text = "Deaths " + current_lives.ToString();
     }
 }
