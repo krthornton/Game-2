@@ -73,9 +73,9 @@ public class Player : MonoBehaviour
     public void FlipSprite()
     {
         // get the current state of the sprite and flip the sprite
-        bool current_flip = GetComponent<SpriteRenderer>().flipY;
-        if (current_flip) GetComponent<SpriteRenderer>().flipY = false;
-        else GetComponent<SpriteRenderer>().flipY = true;
+        Vector3 new_vector = transform.localScale;
+        new_vector.y = -new_vector.y;
+        transform.localScale = new_vector;
     }
 
     // function called when Damageable.OnDie

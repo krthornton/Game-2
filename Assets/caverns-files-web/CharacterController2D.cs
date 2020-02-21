@@ -126,9 +126,19 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
-			// Add a vertical force to the player.
-			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			// check which direction gravity is facing
+			if (m_Rigidbody2D.gravityScale > 0)
+            {
+				// gravity is normal, add a positive vertical force to the player.
+				m_Grounded = false;
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			}
+			else
+            {
+				// gravity is flipped, add a negative vertical force to the player
+				m_Grounded = false;
+				m_Rigidbody2D.AddForce(new Vector2(0f, -m_JumpForce));
+			}
 		}
 	}
 
