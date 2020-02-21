@@ -42,14 +42,8 @@ public class Player : MonoBehaviour
                 // debug
                 if (debug_log) Debug.Log("[DEBUG] Gravity flip delay: " + diff.ToString());
 
-                // update the last_gravity_flip time
-                last_gravity_flip = now;
-
-                // flip gravity
-                GetComponent<Rigidbody2D>().gravityScale *= -1;
-
                 // flip player's sprite
-                FlipSprite();
+                FlipGravity();
             }
         }
     }
@@ -70,11 +64,46 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void FlipSprite()
+    public void FlipGravity()
     {
+        // update the last_gravity_flip time
+        last_gravity_flip = System.DateTime.Now;
+
+        // flip gravity
+        GetComponent<Rigidbody2D>().gravityScale *= -1;
+
         // get the current state of the sprite and flip the sprite
         Vector3 new_vector = transform.localScale;
         new_vector.y = -new_vector.y;
+        transform.localScale = new_vector;
+    }
+
+    public void SetGravity(bool negative)
+    {
+        // update the last_gravity_flip time
+        last_gravity_flip = System.DateTime.Now;
+
+        // set gravity and sprite direction
+        float current_gravity = GetComponent<Rigidbody2D>().gravityScale;
+        Vector3 new_vector = transform.localScale;
+        if (negative)
+        {
+            // set gravity negative
+            GetComponent<Rigidbody2D>().gravityScale = -Mathf.Abs(current_gravity);
+            
+            // set sprite to upside down
+            new_vector.y = -Mathf.Abs(new_vector.y);
+        }
+        else
+        {
+            // set gravity positive
+            GetComponent<Rigidbody2D>().gravityScale = Mathf.Abs(current_gravity);
+
+            // set sprite to standing up
+            new_vector.y = Mathf.Abs(new_vector.y);
+        }
+
+        // update the sprite
         transform.localScale = new_vector;
     }
 
@@ -91,17 +120,18 @@ public class Player : MonoBehaviour
         // set player as inactive
         gameObject.SetActive(false);
 
-        // teleport the player to most recent checkpoint
+        // teleport the player to most recent checkpoint and set gravity
         gameObject.transform.position = spawnpoint.transform.position;
+        SetGravity(spawnpoint.GetComponent<checkpoint>().negativeGravity);
 
         // reset the player's damageable health
         Damageable damageable = this.GetComponent<Damageable>();
         damageable.SetHealth(damageable.startingHealth);
 
-        // subtract a life from the player
+        // increment the player's death count
         current_lives++;
 
-        // update the player's lives count
+        // update the player's death counter on screen
         UpdateLivesUI();
 
         // reenable player
