@@ -15,7 +15,7 @@ public class ToLevel2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 }
 
