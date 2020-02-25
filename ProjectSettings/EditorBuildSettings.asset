@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/oof.unity
     guid: 801100c0ecb9c424d8e6f95fcf0d1eea
-  - enabled: 0
-    path: Assets/Scenes/GAME1234.unity
-    guid: 1f3129fc6c378274a80db18603bfa1c7
   - enabled: 1
     path: Assets/Scenes/vertical.unity
     guid: 75acf7242ec8611409b4a503da94b1ee
