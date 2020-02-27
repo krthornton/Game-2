@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
             {
                 // if not, set new spawnpoint
                 spawnpoint = other.gameObject;
+
+                // play the checkpoint sound effect
+                other.gameObject.GetComponent<AudioSource>().Play();
+
+                // output to console if DEBUG
                 if (debug_log) Debug.Log("[DEBUG] Checkpoint Reached: " + spawnpoint.name);
             }
         }
