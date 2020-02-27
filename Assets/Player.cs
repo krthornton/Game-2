@@ -110,6 +110,10 @@ public class Player : MonoBehaviour
     // function called when Damageable.OnDie
     public void Die()
     {
+        // play the death sound
+        this.gameObject.GetComponent<AudioSource>().playOnAwake = true;
+        this.gameObject.GetComponent<AudioSource>().Play();
+
         // call respawn
         Respawn();
     }
