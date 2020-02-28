@@ -8,20 +8,19 @@ public class Player : MonoBehaviour
 {
     // init some attributes modifiable in editor
     public bool debug_log;
-    public int starting_lives;
-    public int current_lives;
+    public int parLevel;
+    public int deaths;
     public GameObject spawnpoint;
     public int gravity_flip_delay;
 
     // init some private attributes
     System.DateTime last_gravity_flip;
-
+   
+   
+   
     // function called on start of game
     public void Start()
     {
-        // init the player's current_lives to starting_lives
-        current_lives = starting_lives;
-
         // init the last_gravity_flip var
         last_gravity_flip = System.DateTime.Now;
 
@@ -138,7 +137,7 @@ public class Player : MonoBehaviour
         damageable.SetHealth(damageable.startingHealth);
 
         // increment the player's death count
-        current_lives++;
+        deaths++;
 
         // update the player's death counter on screen
         UpdateLivesUI();
@@ -147,10 +146,11 @@ public class Player : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    // updates the UI on screen with current_lives value
+    // updates the UI on screen with deaths value
     public void UpdateLivesUI()
     {
-        Text ui_lives = GameObject.Find("Main Camera/UI/Lives").GetComponent<Text>();
-        ui_lives.text = "Deaths " + current_lives.ToString();
+        Text ui_lives = GameObject.Find("Main Camera/Death UI/Lives").GetComponent<Text>();
+        ui_lives.text = "Deaths: " + deaths.ToString() + "\n" +
+                        "Par: " + parLevel.ToString();
     }
 }
