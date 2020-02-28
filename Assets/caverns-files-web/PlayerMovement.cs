@@ -30,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("IsJumping", true);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // if so, check that the player isn't spamming the gravity key
+            animator.SetBool("Jumped", true);
+        }
+        if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.D))) {
+            animator.SetBool("Jumped", false);
+        }
 
         if (Input.GetButtonDown("Crouch"))
         {

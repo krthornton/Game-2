@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -12,7 +15,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    public Animator animator;
+    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
@@ -53,16 +57,22 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
-				m_Grounded = true;
+               
+                m_Grounded = true;
 				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
+                    
+                OnLandEvent.Invoke();
+              
+            }
 		}
 	}
 
 
 	public void Move(float move, bool crouch, bool jump)
 	{
+    
+
+
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
 		{
@@ -135,8 +145,9 @@ public class CharacterController2D : MonoBehaviour
 			}
 			else
             {
-				// gravity is flipped, add a negative vertical force to the player
-				m_Grounded = false;
+                // gravity is flipped, add a negative vertical force to the player
+                animator.SetBool("Jumped", false);
+                m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, -m_JumpForce));
 			}
 		}
