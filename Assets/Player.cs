@@ -61,6 +61,11 @@ public class Player : MonoBehaviour
             {
                 // if not, set new spawnpoint
                 spawnpoint = other.gameObject;
+
+                // play the checkpoint sound effect
+                other.gameObject.GetComponent<AudioSource>().Play();
+
+                // output to console if DEBUG
                 if (debug_log) Debug.Log("[DEBUG] Checkpoint Reached: " + spawnpoint.name);
             }
         }
@@ -112,6 +117,10 @@ public class Player : MonoBehaviour
     // function called when Damageable.OnDie
     public void Die()
     {
+        // play the death sound
+        this.gameObject.GetComponent<AudioSource>().playOnAwake = true;
+        this.gameObject.GetComponent<AudioSource>().Play();
+
         // call respawn
         Respawn();
     }

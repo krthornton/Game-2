@@ -54,10 +54,7 @@ namespace Gamekit2D
             {
                 m_TransitioningGameObjectPresent = true;
 
-                if (ScreenFader.IsFading || SceneController.Transitioning)
-                    return;
-
-                if (transitionWhen == TransitionWhen.OnTriggerEnter)
+                
                     TransitionInternal ();
             }
         }
