@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     // updates the UI on screen with deaths value
     public void UpdateLivesUI()
     {
-        Text ui_lives = GameObject.Find("Main Camera/UI/Lives").GetComponent<Text>();
+        Text ui_lives = GameObject.Find("Main Camera/Death UI/Lives").GetComponent<Text>();
         ui_lives.text = "Deaths: " + deaths.ToString() + "\n" +
                         "Par: " + parLevel.ToString();
     }
