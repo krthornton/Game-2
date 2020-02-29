@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
             // if so, check that the player isn't spamming the gravity key
             animator.SetBool("Jumped", true);
         }
-        if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.D))) {
+        if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.LeftArrow))|| (Input.GetKey(KeyCode.RightArrow))) {
             animator.SetBool("Jumped", false);
         }
 
