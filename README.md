@@ -1,5 +1,15 @@
 # The Quest for the Universal Remote
-Game 2 for Game Design - The Quest for the Universal Remote
+Game 2 for Game Design - The Quest for the Universal Remote <br/>
+Team Elidibus <br/>
+Shelton Ellis <br/>
+Kaleb Thornton <br/>
+Denton Young <br/>
+Brandon Birmingham <br/>
+
+# Directory
+- Screenshots are in `Screenshots`
+- Gameplay Video is in `the video.zip`
+- Final build of the exec (for Windows) is in `Builds.zip`
 
 # Sources
 - Unity 2D Game Kit [here](https://assetstore.unity.com/packages/essentials/tutorial-projects/2d-game-kit-107098)
