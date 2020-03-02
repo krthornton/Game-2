@@ -15,6 +15,7 @@ Brandon Birmingham <br/>
 - Unity 2D Game Kit [here](https://assetstore.unity.com/packages/essentials/tutorial-projects/2d-game-kit-107098)
 - Brackey's 2D Character Controller [here](https://github.com/Brackeys/2D-Character-Controller)
 - Caverns Environment by Luis Zuno [here](http://pixelgameart.org/web/portfolio/caverns-environment/)
+- Towel Defence Soundtrack by sawsquarenoise [here](https://freemusicarchive.org/music/sawsquarenoise/Towel_Defence_OST)
 
 # How to Setup Git
 _**If you already have Git installed and setup with Github, skip to step 6**_
